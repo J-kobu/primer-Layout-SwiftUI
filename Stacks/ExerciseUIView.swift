@@ -1,24 +1,21 @@
 //
-//  ContentView.swift
+//  ExerciseUIView.swift
 //  Stacks
 //
-//  Created by Jacob Aguilar on 14-11-20.
+//  Created by Jacob Aguilar on 16-11-20.
 //
 
 import SwiftUI
 
-struct ContentView: View {
+struct ExerciseView: View {
     var body: some View {
         VStack {
-            HeaderView()
+            ExerciseHeaderView()
             Spacer()
-            ZStack {
-                PricingView(title: "Básico", subTitle: "Un curso incluído", price: "$9.990", textColor: .white, backgroundColor: .green, icon: "star")
-                    .offset(x: 0, y: -110)
-                    .shadow(color: .black, radius: 2, x: 0.0, y: -2)
+            HStack {
+                ExercisePricingView(title: "Básico", subTitle: "Un curso incluído", price: "$9.990", textColor: .white, backgroundColor: .green)
                 ZStack {
-                    PricingView(title: "Carrera", subTitle: "Toda una carrera", price: "$29.990", textColor: .white, backgroundColor: .blue, icon: "timer")
-                        .shadow(color: .black, radius: 2, x: 0.0, y: -2)
+                    PricingView(title: "Carrera", subTitle: "Toda una carrera", price: "$29.990", textColor: .white, backgroundColor: .blue)
                     Text("El mejor para empezar")
                         .font(.system(.caption, design: .rounded))
                         .foregroundColor(.white)
@@ -26,27 +23,25 @@ struct ContentView: View {
                         .padding(8)
                         .background(Color.orange)
                         .cornerRadius(10)
-                        .offset(x: 0, y: -82)
-                        .shadow(color: .black, radius: 2, x: 0.0, y: -2)
-                    ZStack {
-                        PricingView(title: "Definitivo", subTitle: "Todos los cursos online", price: "$99.990", textColor: .white, backgroundColor: Color(red: 80/255, green: 80/255, blue: 80/255), icon: "lightbulb")
-                            .offset(x: 0, y: 110)
-                            .shadow(color: .black, radius: 2, x: 0.0, y: -2)
-                        
-                        Text("Conviertete en el maestro del universo")
-                            .font(.system(.caption, design: .rounded))
-                            .foregroundColor(.white)
-                            .fontWeight(.black)
-                            .padding(8)
-                            .background(Color.orange)
-                            .cornerRadius(10)
-                            .offset(x: 0, y: 28)
-                            .shadow(color: .black, radius: 2, x: 0.0, y: -2)
-                    }
-                    
+                        .offset(x: 0, y: 65) //Con .offset, podemos indicar donde queremos posicionar un elemento dependiendo de sus ejes
                 }
             }
             .padding()
+            
+            ZStack {
+                ExercisePricingView(title: "Definitivo", subTitle: "Todos los cursos online", price: "$99.990", textColor: .white, backgroundColor: Color(red: 50/255, green: 50/255, blue: 50/255), icon: "lightbulb")
+                    .padding()
+                    .offset(x: 0, y: -15)
+                
+                Text("Conviertete en el maestro del universo")
+                    .font(.system(.caption, design: .rounded))
+                    .foregroundColor(.white)
+                    .fontWeight(.black)
+                    .padding(8)
+                    .background(Color.orange)
+                    .cornerRadius(10)
+                    .offset(x: 0, y: 70)
+            }
             Spacer()
             
         }
@@ -54,13 +49,13 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct ExerciseView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
 
-struct HeaderView: View { //Estructura del título
+struct ExerciseHeaderView: View { //Estructura del título
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 2) { //Por defecto el alignment de la vstack viene en ".center"
@@ -78,7 +73,7 @@ struct HeaderView: View { //Estructura del título
     }
 }
 
-struct PricingView: View { //Estructuctura de los stacks de los frames de precios
+struct ExercisePricingView: View { //Estructuctura de los stacks de los frames de precios
     
     var title: String  //A través de las variables podemos llamar a la estructura desde el ContentView, y así, introducir los parámetros según deseemos
     var subTitle: String
@@ -115,3 +110,4 @@ struct PricingView: View { //Estructuctura de los stacks de los frames de precio
         .cornerRadius(10)
     }
 }
+
